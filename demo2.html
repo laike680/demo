@@ -1,0 +1,96 @@
+<html>
+<head>
+	<title>滑动</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<style type="text/css">
+	html,body{
+		width: 100%;
+		height: 100%;
+	}
+	#container{
+		width: 100vw;
+		height: 100vw;
+		overflow: hidden;
+		position: relative;
+	}
+	#container ul{
+		width: 400vw;
+		height: 100vw;
+		position: absolute;
+		left:0;
+	}
+	#container ul li{
+		margin: 0;
+		border:0.2vw solid;
+		padding: 0;
+		list-style: none;
+		width: 100vw;
+		height: 100vw;
+		float: left;
+		box-sizing:border-box;
+	}
+	</style>
+</head>
+<body>
+
+<div id='container'>
+	<ul>
+		<li>demo1</li>
+		<li>demo2</li>
+		<li>demo3</li>
+		<li>demo4</li>
+	</ul>
+</div>
+<script type="text/javascript">
+
+	let container=document.getElementById('container'),
+		ul=document.getElementsByTagName('ul')[0],
+		lis=document.getElementsByTagName('li'),
+		sw=lis[0].offsetWidth,
+		ex=0
+		left=0,
+		n=0;
+
+	// container.addEventListener('touchstart',function(e){
+	// 		e.preventDefault();
+	// 	 ex=e.targetTouches[0].pageX
+		 
+	// 	console.log(ex)
+	// })
+	// container.addEventListener('touchmove',function(e){
+	// 		e.preventDefault();
+	// 	 let=e.targetTouches[0].pageX-ex
+		
+	// })
+	// container.addEventListener('touchend',function(e){
+	// 		e.preventDefault();
+	// 		console.log(e.changedTouches[0].pageX)
+	// 		ul.style.left= ex-e.changedTouches[0].pageX
+		
+		
+	// })
+	
+	container.addEventListener('touchstart',function(e){
+		e.preventDefault();
+		ex=e.changedTouches[0].pageX;
+		left=ul.offsetLeft;
+		console.log(left)
+	})
+	container.addEventListener('touchmove',function(e){
+		let dis =e.changedTouches[0].pageX - ex;
+		ul.style.left=left + dis + 'px'
+	})
+	container.addEventListener('touchend',function(e){
+		n=Math.round(ul.offsetLeft/sw);
+		ul.style.left=n*sw +'px'
+	})
+
+
+
+
+
+
+</script>
+</body>
+</html>
