@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+#demo{
+	width: 30vw;
+	height: 30vw;
+	background-color: #ccc;
+}
+
+	</style>
+</head>
+<body>
+	<div id='demo'> 
+		点击
+	</div>
+<script type="text/javascript">
+
+	let objDiv= document.getElementById('demo')
+
+	objDiv.addEventListener('touchstart',function(e){
+		objDiv.innerText=e.targetTouches.length
+	})_
+
+
+</script>
+
+</body>
+</html>
