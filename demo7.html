@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ECharts</title>
+	 <meta charset="utf-8" />
+	 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+	 <script src='js/echarts.js'></script>
+	 <style type="text/css">
+	 *{
+	 	padding: 0;margin: 0;
+	 }
+	
+	#box{
+		width:100vw;
+		height: 60vw;
+		box-sizing:border-box;
+		border: 0.2vw solid;
+	}
+
+	 </style>
+</head>
+<body>
+	<div id='box'></div>
+	
+</body>
+<script type="text/javascript">
+		let myChart = echarts.init(document.querySelector('#box'))
+
+		let option= {
+			title:{
+				text:'ECharts 实例'
+			},
+			tooltip:{},
+			legend:{
+				data:['项目1']
+			},
+			xAxis:{
+				data:['asdf','adf','dfsdf','asdg']
+			},
+			yAxis:{},
+			series:[{
+				name:'项目2',
+				type:'bar',
+				data:[10,60,70,80]
+			}]
+		}
+	
+		myChart.setOption(option)
+
+
+</script>
+</html>
