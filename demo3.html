@@ -1,0 +1,74 @@
+<html>
+<head>
+	<title></title>
+	<script src='http://zeptojs.com/zepto.js'></script>
+    <script src='./js/zepot.js'></script>
+    <style type="text/css">
+    *{
+    	margin: 0;
+    	padding: 0;
+    }
+    html,body{
+    	width: 100%;
+    	height: 100%;
+    }
+			  #mobeBox{
+			  width: 100%;
+			  height: 60vw;
+			  overflow: hidden;
+			  font-size: 5vw;
+			  text-align: center;
+			}
+			#moveBox{
+			  width: 400%;
+			  height: 60vw;
+			  list-style: none;
+			}
+			#moveBox li{
+			  width: 25%;
+			  height: 60vw;
+			  float: left;
+			  box-sizing:border-box;
+			  border: 0.2vw solid;
+			
+
+			}
+
+    </style>
+</head>
+<body>
+ <div id='mobeBox'>
+        <ul id='moveBox' >
+          <li>01</li>
+          <li>02</li>
+          <li>03</li>
+          <li>04</li>
+        </ul>
+      </div>
+</body>
+<script type="text/javascript">
+  var i=0;
+  $('#moveBox').swipeLeft(function(){
+    i++
+    if(i>=3){
+    	i=3
+    }
+    console.log(i)
+    $('#moveBox').css('-webkit-transform','translate3d(-'+i*100+'vw,0,0)')
+
+  })
+  $('#moveBox').swipeRight(function(){
+    i--
+    if(i<=0){
+    	i=0
+    }
+    console.log(i)
+    $('#moveBox').css('-webkit-transform','translate3d(-'+i*100+'vw,0,0)')
+
+  })
+
+
+
+
+</script>
+</html>
