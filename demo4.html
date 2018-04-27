@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>同屏拖拽</title>
+</head>
+<style type="text/css">
+	 *{
+    	margin: 0;
+    	padding: 0;
+    }
+    html,body{
+    width: 100%;
+    height: 100%;
+    }
+	#picBox,#box{
+	  width: 80vw;
+	  height: 60vw;
+	  border:0.2vw solid;
+	}	
+	#picBox img{
+		max-width:30vw; 
+		float: left;
+	}
+	#box img{
+		max-width: 20vw;
+	}
+
+	dl{
+		float: left;
+	}
+</style>
+<body>
+		<div id='picBox'>
+			<img src="image/mm1.jpg" class='pic1' />
+			<img src="image/mm2.jpg" class='pic2' />
+			<img src="image/mm4.jpg" class='pic3' />
+		</div>
+		<div id='box'>
+
+		</div>
+		<dl><dt></dt><dd></dd></dl>
+</body>
+<script type="text/javascript">
+	let picBox=document.querySelector('#picBox'),
+		box=document.querySelector('#box'),
+		imgs=[{id:'pic1',num:0},{id:'pic2',num:0},{id:'pic3',num:0}];
+
+	picBox.ondragstart=function(e){
+		let xImg=e.target.className;
+		e.dataTransfer.setData('imgId',xImg);
+	}
+	box.ondragover=function(e){
+		e.preventDefault()
+	}
+	box.ondrop=function(e){
+		let xImg = e.dataTransfer.getData('imgId')
+		for(let i=0;i<imgs.length;i++){
+			if(imgs[i].id==xImg){
+				if(imgs[i].num==0){
+				let imgNode=document.querySelector('.'+xImg)
+					let imgsrc=imgNode.src
+					let html=`<dl><dt><img src=${imgsrc} class=${xImg}/></dt><dd class=${'num'+xImg}></dd></dl>`
+					this.innerHTML+=html
+				}
+				imgs[i].num++
+				let nowimg=document.querySelector('.num'+xImg)
+				nowimg.innerText=imgs[i].num
+			}
+
+			
+		}
+	
+	
+
+	}
+
+	
+
+
+
+
+
+</script>
+</html>

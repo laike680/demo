@@ -18,6 +18,7 @@
 			  overflow: hidden;
 			  font-size: 5vw;
 			  text-align: center;
+			  margin-bottom: 10vw;
 			}
 			#moveBox{
 			  width: 400%;
@@ -30,21 +31,34 @@
 			  float: left;
 			  box-sizing:border-box;
 			  border: 0.2vw solid;
-			
 
 			}
-
+			#postimg{
+				width: 100vw;
+				height: 60vw;
+				border: 0.2vw solid;
+				box-sizing:border-box;
+			}
+			#file{
+				width: 60vw;
+				height: 10vw;
+				border: 0.2vw solid;
+				font-size: 5vw;
+			}
     </style>
 </head>
 <body>
- <div id='mobeBox'>
+    <div id='mobeBox'>
         <ul id='moveBox' >
           <li>01</li>
           <li>02</li>
           <li>03</li>
           <li>04</li>
         </ul>
-      </div>
+    </div>
+    <div id='postimg' draggable=true>
+    </div>
+    <input type='file' id='file' />
 </body>
 <script type="text/javascript">
   var i=0;
@@ -55,7 +69,6 @@
     }
     console.log(i)
     $('#moveBox').css('-webkit-transform','translate3d(-'+i*100+'vw,0,0)')
-
   })
   $('#moveBox').swipeRight(function(){
     i--
@@ -64,11 +77,43 @@
     }
     console.log(i)
     $('#moveBox').css('-webkit-transform','translate3d(-'+i*100+'vw,0,0)')
-
   })
 
+  var file=document.querySelector('#file')
+  var postimg=document.querySelector('#postimg')
+  file.onchange=function(){
+  	console.log(file.files) //文件信息
+  	console.log(file.files[0].type)
 
+  	if (/image/.test(file.files[0].type)) {
+  		let fileimg= new FileReader()
+  		fileimg.readAsDataURL(file.files[0]);
+  		fileimg.onload=function(e){
+  			let t = new Image();
+  			t.src = e.target.result;
+  			console.log(t)
+  			postimg.appendChild(t)
+  		}
+  	}
+  }
 
+  window.ondragover=function(ev){
+  	ev.preventDefault()
+  }
+  window.ondrop=function(e){
+  	e.preventDefault()
+  	var fr = new FileReader();
+  	var file = e.dataTransfer.files[0];
+  	console.log(file)
+
+  	fr.readAsDataURL(file);
+  	fr.onload=function(){
+  		let t = new Image();
+  			t.src = this.result;
+  			console.log(t)
+  			postimg.appendChild(t)
+  	}
+  }
 
 </script>
 </html>

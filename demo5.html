@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hammer移动端事件</title>
+	 <meta charset="utf-8" />
+	 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
+	 <script src='js/hammer.js'></script>
+	 <style type="text/css">
+	 .box{
+	 	width: 100vw;
+	 	height: 60vw;
+	 	background-color: #ccc;
+	 }
+
+
+	 </style>
+</head>
+<body>
+	<div class='box'></div>
+</body>
+<script type="text/javascript">
+	let box=document.querySelector('.box');
+	hammer=new Hammer(box)
+	
+	hammer.on('pan',function(e){ //划动
+		console.log('pan')
+	})
+	
+
+
+</script>
+</html>
