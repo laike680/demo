@@ -6,26 +6,41 @@
 	 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0" />
 	 <script src='js/hammer.js'></script>
 	 <style type="text/css">
+	 *{
+	 	padding: 0;margin: 0;
+	 }
 	 .box{
 	 	width: 100vw;
 	 	height: 60vw;
 	 	background-color: #ccc;
 	 }
-
-
 	 </style>
 </head>
 <body>
 	<div class='box'></div>
 </body>
 <script type="text/javascript">
+	let i=0,flag=true;
 	let box=document.querySelector('.box');
 	hammer=new Hammer(box)
 	
 	hammer.on('pan',function(e){ //划动
-		console.log('pan')
+		
 	})
-	
+	hammer.on('panleft',function(){
+		if(flag){
+			i++
+			flag=false
+			console.log(i)
+		}
+		
+		
+	});
+
+	box.addEventListener('touchend',function(){
+		flag=true;
+		
+	})
 
 
 </script>
